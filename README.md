@@ -7,23 +7,47 @@ To write a program to implement the Decision Tree Regressor Model for Predicting
 1. Hardware – PCs
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
-## Algorithm
-1. 
-2. 
-3. 
-4. 
-
+## AlgorithmLoad and preprocess the employee salary dataset.
+1. Separate features and salary as the target.
+2. Split the data into training and testing sets.
+3. Train the Decision Tree Regressor.
+4. Predict salary, calculate MSE, and display the tree.
+   
 ## Program:
 ```
 /*
 Program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
-Developed by: 
-RegisterNumber:  
+Developed by: Aashif Ahamed S
+RegisterNumber:  212225040004
 */
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeRegressor, plot_tree
+
+data = pd.read_csv("Salary.csv")
+X = data.drop("Salary", axis=1)
+y = data["Salary"]
+X = pd.get_dummies(X, drop_first=True)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42)
+model = DecisionTreeRegressor(random_state=42)
+model.fit(X_train, y_train)
+plt.figure(figsize=(25,12))
+plot_tree(
+    model,
+    feature_names=X.columns,
+    filled=True
+)
+
+plt.title("Decision Tree Regressor")
+plt.show()
 ```
 
 ## Output:
 ![Decision Tree Regressor Model for Predicting the Salary of the Employee](sam.png)
+<img width="1918" height="965" alt="image" src="https://github.com/user-attachments/assets/f919446c-8d31-4325-8388-fcdaf09e56e7" />
 
 
 ## Result:
